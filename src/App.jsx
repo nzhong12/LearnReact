@@ -10,14 +10,14 @@ const welcome = {
 
 const list = [
   {
-    title: 'YZ',
+    title: 'site 1, React',
     url: 'https://reactjs.org/',
     author: 'Y Zhong',
     num_comments: 2,
     points: 3,
     objectID: 0,
 }, {
-  title: 'AB',
+  title: 'site 2, Redux',
   url: 'https://redux.js.org/',
   author: 'A Booth, C Dean',
   num_comments: 5,
@@ -50,14 +50,10 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <label htmlFor="filter"> Filter: </label>
-        <input id="filter" type = "text" />
+        
+        <Search />
         <hr />
-        <ul>
-        {list.map(function (item) {
-          return <li key ={item.objectID}>{item.title}</li>;
-        })}
-</ul>
+       <List />
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -67,6 +63,32 @@ function App() {
       </p>
     </>
   );
+} 
+
+function List() {
+  return ( 
+    <ul>
+{list.map(function (item) {
+return (
+    <li key={item.objectID}>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+      <span>, {item.author}</span>
+      <span>, {item.num_comments}</span>
+      <span>, {item.points}</span> {/* map to jsx elements from list */}
+</li> );
+})}
+</ul>
+  );
+}
+
+function Search() {
+  return (
+    <div>
+      <label htmlFor="filter"> Filter: </label>
+      <input id="filter" type = "text" />
+</div> );
 }
 
 export default App
